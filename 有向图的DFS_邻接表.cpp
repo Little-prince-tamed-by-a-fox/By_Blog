@@ -11,13 +11,13 @@ struct edge                 // 结构体存图
 }ed[MAXM];
 void adde(int a, int b)        // 加边操作
 {
-    ed[++cnt].v=b, ed[ecnt].nxt = fir[a]=ecnt;
+    ed[++ecnt].v=b, ed[ecnt].nxt = fir[a] , fir[a]=ecnt;            // 链式前向星
 }
 void dfs(int x)                  // 搜索
 {
     vis[x]=1;
     ans++;
-    for(int i=fir[x]; i; i = nxt[i])
+    for(int i=fir[x]; i; i = ed[i].nxt)
     {
         int t = ed[i].v;
         if(!vis[t])
@@ -31,7 +31,7 @@ int main()
     for(register int i = 1; i <= m; i++)
     {
         scanf("%d%d", &a, &b);
-        adde(a, b)'
+        adde(a, b);
     }
     scanf("%d", &x);
     dfs(x);
